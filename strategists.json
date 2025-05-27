@@ -1,0 +1,59 @@
+[
+  {
+    "id": "1",
+    "name": "Dr. Eleanor Vance",
+    "pictureUrl": "images/eleanor_vance.png",
+    "expertise": ["Quantum Computing Applications", "AI Ethics & Governance", "Futuristic Urban Planning"],
+    "keyClients": ["Innovatech Dynamics", "Global Future Council", "Neo-Metropolis Development Corp"],
+    "coreSkills": ["Strategic Foresight", "Complex Systems Analysis", "Policy Development", "Scenario Planning"],
+    "strategicPositions": [
+      {
+        "title": "The Quantum Leap: Preparing Industries for a New Computational Paradigm",
+        "url": "papers/quantum_leap_industries.pdf"
+      },
+      {
+        "title": "Ethical Frameworks for Autonomous AI: Navigating the Uncharted",
+        "url": "papers/ai_ethics_frameworks.pdf"
+      }
+    ],
+    "bio": "Dr. Eleanor Vance is a pioneering strategist at the forefront of emerging technologies. With a Ph.D. in Applied Physics and over two decades of experience, she advises global leaders on navigating the complexities of quantum computing, artificial intelligence, and the future of urban environments. Her work is dedicated to ensuring technological advancements are harnessed ethically and for the betterment of society."
+  },
+  {
+    "id": "2",
+    "name": "Marcus Chen",
+    "pictureUrl": "images/marcus_chen.png",
+    "expertise": ["Circular Economy & Sustainability", "Renewable Energy Transition", "Impact Investing"],
+    "keyClients": ["GreenShift International", "TerraCycle Solutions", "Global Impact Fund"],
+    "coreSkills": ["Sustainability Strategy", "Life Cycle Assessment", "ESG Reporting", "Stakeholder Engagement"],
+    "strategicPositions": [
+      {
+        "title": "Beyond Recycling: Implementing True Circularity in Global Supply Chains",
+        "url": "papers/circular_supply_chains_beyond_recycling.pdf"
+      },
+      {
+        "title": "The ROI of Sustainability: How Green Investments Drive Profitability",
+        "url": "papers/roi_sustainability_investments.pdf"
+      }
+    ],
+    "bio": "Marcus Chen is a leading expert in transforming businesses through sustainable practices and circular economy models. His innovative strategies help organizations reduce their environmental footprint while enhancing profitability and brand reputation. Marcus is a sought-after speaker on renewable energy transitions and the future of impact-driven finance."
+  },
+  {
+    "id": "3",
+    "name": "Aisha Khan",
+    "pictureUrl": "images/aisha_khan.png",
+    "expertise": ["Digital Anthropology", "Neuro-marketing Strategies", "Cross-Cultural Consumer Behavior"],
+    "keyClients": ["ConnectSphere Digital", "Global Retail Insights", "CulturEdge Marketing Agency"],
+    "coreSkills": ["Ethnographic Research", "Neuromarketing Analysis", "Brand Storytelling", "User Experience (UX) Design"],
+    "strategicPositions": [
+      {
+        "title": "The Digital Self: Understanding Identity in the Age of Social Media",
+        "url": "papers/digital_self_social_media.pdf"
+      },
+      {
+        "title": "Brain Waves to Bottom Line: The Neuroscience of Purchase Decisions",
+        "url": "papers/neuroscience_purchase_decisions.pdf"
+      }
+    ],
+    "bio": "Aisha Khan is a visionary strategist who blends digital anthropology with cutting-edge neuromarketing techniques. She provides businesses with profound insights into consumer behavior across diverse cultural landscapes, enabling them to create deeply resonant brand experiences. Aisha's work is pivotal in shaping how companies connect with their audiences in an increasingly complex digital world."
+  }
+]
