@@ -32,7 +32,7 @@ function renderStrategistCards(strategists) {
     strategists.forEach(strategist => {
         const card = document.createElement('div');
         card.className = 'strategist-card';
-        card.setAttribute('data-id', strategist.id); // Set data-id attribute
+        card.setAttribute('data-id', strategist.id);
 
         card.addEventListener('click', () => {
             showStrategistDetails(strategist.id);
@@ -75,7 +75,50 @@ function renderStrategistCards(strategists) {
 
         appContainer.appendChild(card);
     });
+
+    if (strategists.length === 0 && appContainer.innerHTML.trim() === '') {
+        // Check if a search term was active or it's just no strategists initially
+        const searchInput = document.getElementById('search-input');
+        if (searchInput && searchInput.value.trim() !== '') {
+            appContainer.innerHTML = '<p>No strategists found matching your search.</p>';
+        } else if (searchInput && searchInput.value.trim() === '' && allStrategists.length > 0) {
+            // This case might occur if allStrategists is populated but something else went wrong
+            // or if the search term was cleared and there are still no results (which shouldn't happen if allStrategists has items)
+            // For now, let's assume if strategists is empty and search is empty, it's the initial "no profiles" message.
+        } else if (allStrategists.length === 0) {
+             appContainer.innerHTML = '<p>No strategist profiles available at the moment.</p>';
+        }
+    }
 }
+
+
+function performSearch(searchTerm) {
+    const lowerSearchTerm = searchTerm.toLowerCase().trim();
+    const appContainer = document.getElementById('app-container');
+
+    if (!lowerSearchTerm) {
+        renderStrategistCards(allStrategists);
+        return;
+    }
+
+    const filteredStrategists = allStrategists.filter(strategist => {
+        if (strategist.name.toLowerCase().includes(lowerSearchTerm)) return true;
+        if (strategist.bio.toLowerCase().includes(lowerSearchTerm)) return true;
+        if (strategist.expertise.some(e => e.toLowerCase().includes(lowerSearchTerm))) return true;
+        if (strategist.keyClients.some(kc => kc.toLowerCase().includes(lowerSearchTerm))) return true;
+        if (strategist.coreSkills.some(cs => cs.toLowerCase().includes(lowerSearchTerm))) return true;
+        if (strategist.strategicPositions.some(sp => sp.title.toLowerCase().includes(lowerSearchTerm))) return true;
+        return false;
+    });
+
+    if (filteredStrategists.length === 0) {
+        if(appContainer) appContainer.innerHTML = '<p>No strategists found matching your search.</p>';
+        renderStrategistCards([]); // Call with empty to ensure no old cards are shown
+    } else {
+        renderStrategistCards(filteredStrategists);
+    }
+}
+
 
 function showStrategistDetails(strategistId) {
     const strategist = allStrategists.find(s => s.id === strategistId);
@@ -92,17 +135,17 @@ function showStrategistDetails(strategistId) {
 
     const modal = document.createElement('div');
     modal.id = 'strategist-modal';
-    modal.className = 'modal'; // For styling
+    modal.className = 'modal';
 
     const modalContent = document.createElement('div');
     modalContent.className = 'modal-content';
 
     const closeButton = document.createElement('button');
     closeButton.className = 'modal-close-button';
-    closeButton.innerHTML = '&times;'; // 'x' character
+    closeButton.innerHTML = '&times;';
     closeButton.onclick = () => {
         modal.style.display = 'none';
-        modal.remove(); // Clean up from DOM
+        modal.remove();
     };
     modalContent.appendChild(closeButton);
 
@@ -144,7 +187,7 @@ function showStrategistDetails(strategistId) {
         const link = document.createElement('a');
         link.href = position.url;
         link.textContent = position.title;
-        link.target = '_blank'; // Open in new tab
+        link.target = '_blank';
         listItem.appendChild(link);
         positionsList.appendChild(listItem);
     });
@@ -152,20 +195,28 @@ function showStrategistDetails(strategistId) {
 
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
-    modal.style.display = 'block'; // Show the modal
+    modal.style.display = 'block';
 }
 
 
 window.onload = async () => {
     console.log("Window loaded, fetching strategists...");
-    // fetchStrategists populates allStrategists
     await fetchStrategists(); 
+
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', (event) => {
+            performSearch(event.target.value);
+        });
+    }
+
     if (allStrategists && allStrategists.length > 0) {
         renderStrategistCards(allStrategists);
     } else {
-        console.log("No strategists to render or error occurred.");
+        console.log("No strategists to render or error occurred during initial load.");
         const appContainer = document.getElementById('app-container');
-        if (appContainer && appContainer.innerHTML.trim() === '') {
+        // Only set "No strategist profiles" if not already showing an error from fetchStrategists
+        if (appContainer && appContainer.innerHTML.trim() === '') { 
             appContainer.innerHTML = '<p>No strategist profiles available at the moment.</p>';
         }
     }
